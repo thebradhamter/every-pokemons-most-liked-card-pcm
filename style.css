@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+:root {
+    --app-margin: 25px;
+};
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#app {
+    margin-top: var(--app-margin);
+    margin-bottom: var(--app-margin);
+    margin-left: var(--app-margin);
+    margin-right: var(--app-margin);
+}
+
+h1, .dynapuff {
+    font-family: "DynaPuff", sans-serif;
+}
+
+p, label, button {
+    font-family: "Atkinson Hyperlegible", sans-serif;
+}
+
+input, button {
+    border-radius: 6px;
+}
