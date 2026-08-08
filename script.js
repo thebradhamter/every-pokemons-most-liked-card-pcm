@@ -9,17 +9,17 @@ async function getAllCards(pokemonName){
     let cursor = 0;
     let cards = [];
     while (true) {
-        status.value = `Getting page ${cursor.toString()} for "${pokemonName}"...`;
+        status.innerHTML = `Getting page ${cursor.toString()} for "${pokemonName}"...`;
         const call = await fetch("https://corsproxy.io/?url="+encodeURIComponent(template.replaceAll("POKEMONNAME", pokemonName).replaceAll("CURSORPOS", cursor.toString())));
         const data = await call.json();
         cards.push(data.items);
-        if (call.nextCursor) {
+        if (data.nextCursor) {
             cursor += 1;
         } else {
             break;
         };
     };
-    status.value = `All pages loaded for "${pokemonName}"!`;
+    status.innerHTML = `All pages loaded for "${pokemonName}"!`;
     return cards;
 };
 
