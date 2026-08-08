@@ -32,7 +32,7 @@ searchbtn.onclick = async function() {
     if (e) {
         resultbox.style.display = "block";
         const cards = await getAllCards(e);
-        const cardsOrder = sortLikesDescending(cards.flat());
+        const cardsOrder = sortLikesDescending(cards);
         console.log(cards);
     } else {
         alert("Input a Pokémon name into the field.");
