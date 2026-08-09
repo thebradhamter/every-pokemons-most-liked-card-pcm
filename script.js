@@ -39,7 +39,11 @@ function loadCardsInHtml(cards) {
         a1.href = `https://pokecardmaker.net/card/${card.user.username}/${card.slug}`;
         a1.target = "_blank";
         a1.rel = "noopener noreferrer";
-        a1.innerHTML = `${card.subname} ${card.name}`
+        if (card.subname) {
+            a1.innerHTML = `${card.subname} ${card.name}`;
+        } else {
+            a1.innerHTML = card.name;
+        }
         const a2 = document.createElement("a");
         a2.href = `https://pokecardmaker.net/profile/${card.user.username}`;
         a2.target = "_blank";
@@ -54,7 +58,7 @@ function loadCardsInHtml(cards) {
     };
 };
 
-searchbtn.onclick = async function() {
+async function search() {
     e = pokemonnameinput.value.trim()
     if (e) {
         resultbox.style.display = "block";
@@ -65,6 +69,17 @@ searchbtn.onclick = async function() {
     } else {
         alert("Input a Pokémon name into the field.");
     };
+}
+
+searchbtn.onclick = async function() {
+    search();
 };
+
+pokemonnameinput.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+        e.preventDefault();
+        search();
+    };
+});
 
 resultbox.style.display = "none";
