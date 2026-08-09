@@ -29,6 +29,21 @@ function sortLikesDescending(cards) {
     return cards.sort((a, b) => b.likeCount - a.likeCount);
 };
 
+function formatSymbols(text) {
+    text = text.replaceAll("[Y]", '<span style="font-family: \'Pokesymbol2\';">A</span>');
+    text = text.replaceAll("[G]", '<span style="font-family: \'Pokesymbol2\';">1</span>');
+    text = text.replaceAll("[R]", '<span style="font-family: \'Pokesymbol2\';">2</span>');
+    text = text.replaceAll("[W]", '<span style="font-family: \'Pokesymbol2\';">3</span>');
+    text = text.replaceAll("[L]", '<span style="font-family: \'Pokesymbol2\';">4</span>');
+    text = text.replaceAll("[P]", '<span style="font-family: \'Pokesymbol2\';">5</span>');
+    text = text.replaceAll("[F]", '<span style="font-family: \'Pokesymbol2\';">6</span>');
+    text = text.replaceAll("[C]", '<span style="font-family: \'Pokesymbol2\';">7</span>');
+    text = text.replaceAll("[D]", '<span style="font-family: \'Pokesymbol2\';">8</span>');
+    text = text.replaceAll("[M]", '<span style="font-family: \'Pokesymbol2\';">9</span>');
+    text = text.replaceAll("[N]", '<span style="font-family: \'Pokesymbol2\';">0</span>');
+    return text;
+};
+
 function loadCardsInHtml(cards) {
     cardlist.replaceChildren();
     i = 0;
@@ -40,9 +55,9 @@ function loadCardsInHtml(cards) {
         a1.target = "_blank";
         a1.rel = "noopener noreferrer";
         if (card.subname) {
-            a1.innerHTML = `${card.subname} ${card.name}`;
+            a1.innerHTML = formatSymbols(`${card.subname} ${card.name}`);
         } else {
-            a1.innerHTML = card.name;
+            a1.innerHTML = formatSymbols(card.name);
         }
         const a2 = document.createElement("a");
         a2.href = `https://pokecardmaker.net/profile/${card.user.username}`;
