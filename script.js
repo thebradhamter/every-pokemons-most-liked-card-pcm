@@ -1,4 +1,4 @@
-const template = "https://api.pokecardmaker.net/cards?limit=16&includedTags%5B%5D=serious&search=POKEMONNAME&sortBy=new&cursor=CURSORPOS";
+const template = "https://api.pokecardmaker.net/cards?limit=100&includedTags%5B%5D=serious&search=POKEMONNAME&sortBy=likes-desc&cursor=CURSORPOS";
 const pokemonnameinput = document.getElementById("pokemonnameinput");
 const searchbtn = document.getElementById("searchbtn");
 const resultbox = document.getElementById("resultbox");
@@ -26,22 +26,15 @@ async function getAllCards(pokemonName){
     return cards;
 };
 
-function sortLikesDescending(cards) {
-    return cards.sort((a, b) => b.likeCount - a.likeCount);
-};
+// function sortLikesDescending(cards) {
+//     return cards.sort((a, b) => b.likeCount - a.likeCount);
+// };
 
 function formatSymbols(text) {
-    text = text.replaceAll("[Y]", '<span style="font-family: \'Pokesymbol2\';">A</span>');
-    text = text.replaceAll("[G]", '<span style="font-family: \'Pokesymbol2\';">1</span>');
-    text = text.replaceAll("[R]", '<span style="font-family: \'Pokesymbol2\';">2</span>');
-    text = text.replaceAll("[W]", '<span style="font-family: \'Pokesymbol2\';">3</span>');
-    text = text.replaceAll("[L]", '<span style="font-family: \'Pokesymbol2\';">4</span>');
-    text = text.replaceAll("[P]", '<span style="font-family: \'Pokesymbol2\';">5</span>');
-    text = text.replaceAll("[F]", '<span style="font-family: \'Pokesymbol2\';">6</span>');
-    text = text.replaceAll("[C]", '<span style="font-family: \'Pokesymbol2\';">7</span>');
-    text = text.replaceAll("[D]", '<span style="font-family: \'Pokesymbol2\';">8</span>');
-    text = text.replaceAll("[M]", '<span style="font-family: \'Pokesymbol2\';">9</span>');
-    text = text.replaceAll("[N]", '<span style="font-family: \'Pokesymbol2\';">0</span>');
+    symbols = ["G","R","W","L","P","F","D","M","Y","N","C","e","X","E","m","b","*","p","+",">","d","f","g","l","4","c","v","7","9"]
+    for (const symbol of symbols) {
+        text = text.replaceAll(`[${symbol}]`, `<span style="font-family: 'Pokemon TCG Symbols';">${symbol}</span>`);
+    };
     return text;
 };
 
@@ -79,9 +72,9 @@ async function search() {
     if (e) {
         resultbox.style.display = "block";
         const cards = await getAllCards(e);
-        const cardsOrder = sortLikesDescending(cards);
+        // const cardsOrder = sortLikesDescending(cards);
         // console.log(cards);
-        loadCardsInHtml(cardsOrder);
+        loadCardsInHtml(cards);
     } else {
         alert("Input a Pokémon name into the field.");
     };

@@ -6,8 +6,8 @@
 }
 
 @font-face {
-    font-family: "Pokesymbol2";
-    src: url("./Pokesymbol2-regular.otf") format("opentype");
+    font-family: "Pokemon TCG Symbols";
+    src: url("./PKMN_TCG_SYM18.ttf") format("opentype");
     font-weight: normal;
     font-style: normal;
 }
