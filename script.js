@@ -10,6 +10,7 @@ async function getAllCards(pokemonName){
     let cursor = 0;
     let cards = [];
     status.style.display = "block";
+    cardlist.replaceChildren();
     while (true) {
         status.innerHTML = `Getting page ${cursor.toString()} for "${pokemonName}"...`;
         const call = await fetch("https://corsproxy.io/?url="+encodeURIComponent(template.replaceAll("POKEMONNAME", pokemonName).replaceAll("CURSORPOS", cursor.toString())));
